@@ -1,0 +1,23 @@
+projection;
+//strict ( 2 );
+
+define behavior for ZC_NS_A_PO_HEADER alias ZPoHeader
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Change_status;
+
+ use association _po_item {create; }
+}
+
+define behavior for ZC_NS_A_PO_ITEMS alias ZPoItems
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _po_header;
+
+}

@@ -1,0 +1,112 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+    headerInfo: {
+        typeName: 'Purchase Order',
+        typeNamePlural: 'Purchase Orders',
+        title: {
+                    type: #STANDARD,
+                    value: 'PoNum'
+               }
+               }
+      }
+annotate entity ZC_NS_A_PO_HEADER with
+{
+  @UI.facet: [ {
+    label: 'Purchase Order Header',
+    id: 'POHeaders',
+    purpose: #STANDARD,
+    position: 10 ,
+    //type: #IDENTIFICATION_REFERENCE
+    type: #COLLECTION
+  },
+
+  {
+  id: 'BasicInfo', 
+  purpose:#STANDARD,
+  parentId: 'POHeaders', 
+  position:10,
+  targetQualifier: 'BasicGroup', 
+  type:#FIELDGROUP_REFERENCE,
+  label:'Basic Details'
+  },
+  
+  {
+  id: 'OrgInfo', 
+  purpose:#STANDARD, 
+  parentId: 'POHeaders', 
+  position:20,
+  targetQualifier: 'OrgGroup', 
+  type:#FIELDGROUP_REFERENCE,
+  label:'Organization Details'
+  },
+  
+  {
+  id: 'MorDet', 
+  purpose:#STANDARD, 
+  parentId: 'POHeaders', 
+  position:30, 
+  targetQualifier: 'MoreDet',
+  type:#FIELDGROUP_REFERENCE,
+  label:'More Details'
+  },
+
+  {
+    id: 'POItems',
+    purpose: #STANDARD,
+    type:#LINEITEM_REFERENCE,
+    position: 20,
+    targetElement: '_po_item',
+    label: 'Purchase Order Items'
+  }
+  ]
+
+
+  //@UI.identification: [ {    position: 10  } ]
+  @UI.fieldGroup: [{ position: 10, label: 'Purchase Order',qualifier: 'BasicGroup' }] 
+  @UI.dataPoint:{ title:'Purchase Order', qualifier: 'HD' }
+  @UI.lineItem: [ {    position: 10, label: 'Purchase Order' } ]
+  @UI.selectionField: [ {    position: 10  } ]
+  PoNum;
+
+  @EndUserText.label: 'Type'
+  //@UI.identification: [ {    position: 30 ,    label: 'Type', importance: #HIGH  } ]
+  @UI.fieldGroup: [{ position: 30, label: 'Order Type',qualifier: 'BasicGroup' }]
+  @UI.lineItem: [ {    position: 30 ,    label: 'Type'  } ]
+  Type;
+
+  //@UI.identification: [ {    position: 40  } ]
+  @UI.fieldGroup: [{ position: 40, label: 'Company Code',qualifier: 'OrgGroup' }]
+  @UI.lineItem: [ {    position: 40, label: 'Company Code', importance: #HIGH  } ]
+  CompCode;
+
+  //@UI.identification: [ {    position: 50  } ]
+  @UI.fieldGroup: [{ position: 50, label: 'Organization',qualifier: 'OrgGroup' }]
+  @UI.lineItem: [ {    position: 50, label: 'Organization', importance: #HIGH  } ]
+  @UI.selectionField: [ {    position: 50  } ]
+  Org;
+
+
+  //@UI.identification: [ {    position: 60  } ]
+  @UI.fieldGroup: [{ position: 60, label: 'Vendor',qualifier: 'OrgGroup' }]
+  @UI.lineItem: [ {    position: 60, label: 'Vendor'  } ]
+  @UI.selectionField: [ {    position: 20    } ]
+  Vendor;
+
+  //@UI.identification: [ {    position: 70  } ]
+  @UI.fieldGroup: [{ position: 70, label: 'Plant',qualifier: 'OrgGroup' }]
+  @UI.lineItem: [ {    position: 70, label: 'Plant'  } ]
+  Plant;
+
+  @UI.lineItem: [{ position: 80,label: 'Status'},
+                 { type: #FOR_ACTION, dataAction: 'Change_status' , label: 'ChangeStatus'}]
+  //@UI.identification: [{ position: 80,label: 'Purchase Status' }]
+  @UI.fieldGroup: [{ position: 80, label: 'Purchase Status',qualifier: 'BasicGroup' }]
+  Status;
+
+  //@UI.identification: [ {    position: 90  } ]
+  @UI.lineItem: [ {    position: 90  } ]
+  @UI.selectionField: [ {   position: 90  } ]
+  @UI.fieldGroup: [{ position: 90, label: 'Creation Date',qualifier: 'MoreDet' }]
+  CreateBy;
+
+}

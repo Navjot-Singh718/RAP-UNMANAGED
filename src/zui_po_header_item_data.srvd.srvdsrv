@@ -1,0 +1,5 @@
+@EndUserText.label: 'Purchase Order Data'
+define service ZUI_PO_HEADER_ITEM_DATA {
+  expose ZC_NS_A_PO_HEADER as ZNS_HEADER;
+  expose ZC_NS_A_PO_ITEMS  as ZNS_ITEMS;
+}

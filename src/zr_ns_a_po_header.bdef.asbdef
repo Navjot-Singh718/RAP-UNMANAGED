@@ -1,0 +1,72 @@
+unmanaged implementation in class ZBP_R_NS_A_PO_HEADER unique;
+//strict ( 2 );
+
+define behavior for ZR_NS_A_PO_HEADER alias ZPoHeader
+//etag master ChangedDateTime
+lock master
+authorization master ( global )
+//late numbering
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update )
+  PoNum;
+
+  field ( mandatory )
+  DocCat, CompCode, Org, Status, Vendor;
+
+  action ( features : instance ) Change_status result [1] $self;
+  association _po_item { create; }
+
+  mapping for zns_a_po_header
+    {
+      PoNum              = po_num;
+      DocCat             = doc_cat;
+      Type               = type;
+      CompCode           = comp_code;
+      Org                = org;
+      Status             = status;
+      Vendor             = vendor;
+      Plant              = plant;
+      CreateBy           = create_by;
+      CreatedDateTime    = created_date_time;
+      ChangedDateTime    = changed_date_time;
+      LocalLastChangedBy = local_last_changed_by;
+    }
+}
+
+define behavior for ZR_NS_A_PO_ITEMS alias ZPoItems
+implementation in class ZBP_R_NS_A_PO_ITEMS unique
+//etag dependent by _po_header
+lock dependent by _po_header
+authorization dependent by _po_header
+//late numbering
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update ) PoNum, PoItem;
+  field ( mandatory ) ItemText, Material, Uom, Plant, StorLoc, Qty, ProductPrice, PriceUnit;
+  association _po_header;
+
+  mapping for zns_a_po_items
+    {
+      PoNum              = po_num;
+      PoItem             = po_item;
+      ItemText           = item_text;
+      Material           = material;
+      Plant              = plant;
+      StorLoc            = stor_loc;
+      Qty                = qty;
+      Uom                = uom;
+      ProductPrice       = product_price;
+      PriceUnit          = price_unit;
+      CreateBy           = create_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

@@ -1,0 +1,33 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Purchase Order Application",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zpurchaseorderapp"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_419F269149BD4B521B17EC0374FB0036E72A8D43_TM",
+    "semanticObject": "zpurchase_order_app",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_419F269149BD4B521B17EC0374FB0036E72A8D43_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Purchase Order Application"
+      }
+    }
+  ]
+}

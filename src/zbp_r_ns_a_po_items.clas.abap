@@ -1,0 +1,5 @@
+CLASS zbp_r_ns_a_po_items DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zr_ns_a_po_header.
+ENDCLASS.
+
+CLASS zbp_r_ns_a_po_items IMPLEMENTATION.
+ENDCLASS.
